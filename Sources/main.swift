@@ -10,7 +10,9 @@ DispatchQueue.global().sync {
   client.fetchEntry(identifier:"nyancat") { (result) in
     switch result {
         case let .success(entry):
-            print(entry.fields["name"]!)
+            for (key, value) in entry.fields {
+                print("key: " + String(key))
+            }
         case .error(_):
             print("Error!")
     }
@@ -18,5 +20,4 @@ DispatchQueue.global().sync {
   }
 
   group.wait()
-  print("Done")
 }
